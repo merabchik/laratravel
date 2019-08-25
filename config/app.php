@@ -163,7 +163,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Reliese\Coders\CodersServiceProvider::class,
         monirz\lvartisan\LvartisanServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Package Service Providers...
