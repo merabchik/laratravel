@@ -1,4 +1,3 @@
-
 @extends('front/default/layouts/app')
 
 @section('sidebar')
@@ -21,7 +20,9 @@
                     <p class="card-text">{{ $tour["title"] }}</p>
                 </div>
             </div>
-            <a class="btn btn-primary" href="<?=url("tour/booking/{{$tour["tour_id"]}}");?>" role="button"><i class="fas fa-bookmark    "></i></a>         
+            <a class="btn btn-primary" href="<?=url("tour/booking/{{$tour["tour_id"]}}");?>" role="button">
+                <i class="fas fa-bookmark"></i> @lang('booking.book_now')
+            </a>         
         </div>    
     </div>
     <div class="row">
@@ -34,7 +35,9 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ $item["title"] }}</h4>
                             <p class="card-text"></p>
-                            <a class="btn btn-primary" href="<?=url("/tour/{$item["id"]}");?>" role="button"><i class="fas fa-bookmark"></i> Book Now</a>
+                            <a class="btn btn-primary" href="<?=url("/tour/{$item["id"]}");?>" role="button">
+                                <i class="fas fa-bookmark"></i> @lang('booking.book_now')
+                            </a>
                         </div>
                     </div>
                 </div>

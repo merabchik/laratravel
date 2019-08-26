@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models as Models;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /**
  * Tours controller class
@@ -20,9 +21,11 @@ class ToursController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Response $response
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Response $response)
     {
         $view = [];
         $TourPositionLink = \App\Models\TourPositionLink::where(['list_position_id' => 1])->cursor();
@@ -35,6 +38,8 @@ class ToursController extends Controller
 
     /**
      * Get tour details record with related records
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Response $response
      * @return \Illuminate\Http\Response
      */
     public function tour(Request $request) {
@@ -49,18 +54,34 @@ class ToursController extends Controller
     }
 
     /**
+     * Get tour details record with related records
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Response $response
+     * @return \Illuminate\Http\Response
+     */
+    public function booking(Request $request, Response $response){
+        $tour_id = (int) $request->id;
+        $view = [];
+        $tour = \App\Models\Tour::where(['id' => $tour_id])->first();
+        $view["tour"] = \App\Models\TourDetail::where(['tour_id' => $tour->id, 'lang_id' => $this->lang_id])->first();
+        return view('front.default.tours.booking', $view);
+    }
+
+    /**
      * Get simmilar Tours
      * @param $pTourId int
      * @return Array of tour records
      */
     private function getSimmilarTours($pTourId) {
-        $tours = \App\Models\TourDetail::where(['lang_id' => $this->lang_id])->cursor()->toArray();
+        $tours = \App\Models\TourDetail::where(['lang_id' => $this->lang_id])->cursor();
         return $tours;
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Response $response
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -71,7 +92,8 @@ class ToursController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Response $response
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

@@ -17,6 +17,7 @@ Route::get('/tours', /*[
 'Front\ToursController@index')->name('tours');
 
 Route::get('/tour/{id}', 'Front\ToursController@tour')->where(['id' => '[0-9]+', 'lang_id' => '[0-9]+'])->name('tour');
+Route::get('/tour/booking/{id}', 'Front\ToursController@booking')->where(['id' => '[0-9]+', 'lang_id' => '[0-9]+'])->name('booking');
 /**
  * Cars routes
  */
