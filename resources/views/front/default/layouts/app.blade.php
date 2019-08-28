@@ -13,5 +13,8 @@
         <div class="container">
             @yield('content')
         </div>
+        @section('footer')
+            @include('front.default.layouts.footer')
+        @show
     </body>
 </html>
