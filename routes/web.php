@@ -46,6 +46,7 @@ Route::get('api/tours', function () {
  */
 
 Route::group(['middleware' => 'CheckAdminPerms'], function () {
+    Route::get( '/admin/', 'UserController@getData' );
     Route::get( '/admin/tours', 'UserController@getData' );
     Route::post( '/admin/tour/{id}', 'UserController@postData' );
 
@@ -64,3 +65,6 @@ Route::group(['middleware' => 'CheckAdminPerms'], function () {
     Route::post( '/admin/bookings', 'UserController@postData' );
     Route::post( '/admin/booking/{id}', 'UserController@postData' );
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
