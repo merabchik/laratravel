@@ -45,10 +45,13 @@ Route::get('api/tours', function () {
  * Admin routers with middleware CheckAdminPerms
  */
 
+Route::get('/admin/login/', 'Admin\Auth\LoginController@showLoginForm');
+Route::post('/admin/login/', 'Admin\Auth\LoginController@authenticate')->name('admin.login');
+
 Route::group(['middleware' => 'CheckAdminPerms'], function () {
-    Route::get( '/admin/', 'UserController@getData' );
-    Route::get( '/admin/tours', 'UserController@getData' );
-    Route::post( '/admin/tour/{id}', 'UserController@postData' );
+    Route::get( '/admin', 'Admin\Dashboard\DashboardController@index' );
+    Route::get( '/admin/tours', 'Admin\Tours\TourController@index' );
+    Route::post( '/admin/tour/{id}', 'Admin\Tours\TourController@tour' );
 
     Route::post( '/admin/users/', 'UserController@postData' );
     Route::post( '/admin/user/{id}', 'UserController@postData' );
