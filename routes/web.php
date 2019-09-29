@@ -40,34 +40,37 @@ Route::get('api/tours', function () {
     return \App\Models\TourDetail::where(['lang_id' => 1])->get();
 });
 
-
 /**
  * Admin routers with middleware CheckAdminPerms
  */
 
-Route::get('/admin/login/', 'Admin\Auth\LoginController@showLoginForm');
-Route::post('/admin/login/', 'Admin\Auth\LoginController@authenticate')->name('admin.login');
+// App\Http\Controllers\Admin\Auth
 
-Route::group(['middleware' => 'CheckAdminPerms'], function () {
-    Route::get( '/admin', 'Admin\Dashboard\DashboardController@index' );
-    Route::get( '/admin/tours', 'Admin\Tours\TourController@index' );
-    Route::post( '/admin/tour/{id}', 'Admin\Tours\TourController@tour' );
+Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
+    Route::get('/admin', 'Admin\Dashboard\DashboardController@index');
+    Route::get('/admin/tours', 'Admin\Tours\TourController@index');
+    Route::post('/admin/tour/{id}', 'Admin\Tours\TourController@tour');
 
-    Route::post( '/admin/users/', 'UserController@postData' );
-    Route::post( '/admin/user/{id}', 'UserController@postData' );
+    Route::post('/admin/users/', 'UserController@postData');
+    Route::post('/admin/user/{id}', 'UserController@postData');
 
-    Route::post( '/admin/tour/{id}', 'UserController@postData' );
-    Route::post( '/admin/tour/{id}', 'UserController@postData' );
+    Route::post('/admin/tour/{id}', 'UserController@postData');
+    Route::post('/admin/tour/{id}', 'UserController@postData');
 
-    Route::post( '/admin/hotels', 'UserController@postData' );
-    Route::post( '/admin/hotel/{id}', 'UserController@postData' );
+    Route::post('/admin/hotels', 'UserController@postData');
+    Route::post('/admin/hotel/{id}', 'UserController@postData');
 
-    Route::post( '/admin/cars', 'UserController@postData' );
-    Route::post( '/admin/car/{id}', 'UserController@postData' );
+    Route::post('/admin/cars', 'UserController@postData');
+    Route::post('/admin/car/{id}', 'UserController@postData');
 
-    Route::post( '/admin/bookings', 'UserController@postData' );
-    Route::post( '/admin/booking/{id}', 'UserController@postData' );
+    Route::post('/admin/bookings', 'UserController@postData');
+    Route::post('/admin/booking/{id}', 'UserController@postData');
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Authentication Routes...
+Route::get('admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
+Route::post('admin/login', 'Admin\Auth\LoginController@login');
+Route::post('admin/logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+
+
+Auth::routes();

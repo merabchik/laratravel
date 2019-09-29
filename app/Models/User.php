@@ -8,6 +8,7 @@
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+use \Illuminate\Contracts\Auth\Authenticatable as Authenticatable;
 
 /**
  * Class User
@@ -95,4 +96,5 @@ class User extends Eloquent
 	{
 		return $this->hasMany(\App\Models\UserToken::class);
 	}
+
 }

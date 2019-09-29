@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -27,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/lt/admin/';
+    protected $redirectTo = '/admin/dashboard/';
 
     /**
      * Create a new controller instance.
@@ -39,26 +40,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        try {
-            if ($token = JWTAuth::attempt($credentials)) {                
-                $UserSession = \App\Models\UserSession::create([
-                    'user_id' => $user_id,
-                    'token' => $token,
-                    'ipaddr' => $ipaddr,
-                    'client_info' => $client_info,
-                    'create_date' => $create_date
-                ]);
-            }else{
-                return response()->json(['error' => 'invalid_credentials'], 400);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-
-        return response()->json(compact('token'));
-    }
 }
