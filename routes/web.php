@@ -47,6 +47,10 @@ Route::get('api/tours', function () {
 // App\Http\Controllers\Admin\Auth
 
 Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
+    
+    Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+    Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+
     Route::get('/admin', 'Admin\Dashboard\DashboardController@index');
     Route::get('/admin/tours', 'Admin\Tours\TourController@index');
     Route::post('/admin/tour/{id}', 'Admin\Tours\TourController@tour');
