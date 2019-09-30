@@ -16,7 +16,7 @@
         "monirz/lvartisan": "^1.0",
         "reliese/laravel": "^0.0.13",
         "tymon/jwt-auth": "dev-develop",
-        "unisharp/laravel-filemanager": "~1.8"
+        "unisharp/laravel-filemanager": "^1.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
