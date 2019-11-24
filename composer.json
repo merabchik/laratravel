@@ -13,9 +13,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "monirz/lvartisan": "^1.0",
         "reliese/laravel": "^0.0.13",
-        "tymon/jwt-auth": "dev-develop",
         "unisharp/laravel-filemanager": "^1.9"
     },
     "require-dev": {
@@ -42,8 +40,8 @@
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "database\\seeds",
+            "database\\factories"
         ]
     },
     "autoload-dev": {

@@ -36,6 +36,7 @@ use \Illuminate\Contracts\Auth\Authenticatable as Authenticatable;
  */
 class User extends Eloquent
 {
+
 	public $timestamps = false;
 
 	protected $casts = [

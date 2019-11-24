@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * Class User
@@ -32,7 +31,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @package App\Http\Controllers\Admin
  */
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -72,13 +71,4 @@ class User extends Authenticatable implements JWTSubject
         'create_date' => 'datetime',
         'modify_date' => 'datetime'
     ];
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 }

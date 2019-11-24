@@ -162,8 +162,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Reliese\Coders\CodersServiceProvider::class,
-        monirz\lvartisan\LvartisanServiceProvider::class,
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -46,7 +46,7 @@ Route::get('api/tours', function () {
 
 // App\Http\Controllers\Admin\Auth
 
-Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
+Route::group(['middleware' => 'auth:admin'], function () {
     
     Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
     Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
@@ -73,8 +73,6 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
 
 // Authentication Routes...
 Route::get('admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-Route::post('admin/login', 'Admin\Auth\LoginController@login');
+Route::post('admin/login', 'Admin\Auth\LoginController@login')->name('admin.login.post');
 Route::post('admin/logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
-
-
-Auth::routes();
+//Auth::routes();
