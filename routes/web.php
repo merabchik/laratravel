@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 
     Route::get('/admin', 'Admin\Dashboard\DashboardController@index');
+    Route::get('/admin/dashboard', 'Admin\Dashboard\DashboardController@index');
     Route::get('/admin/tours', 'Admin\Tours\TourController@index');
     Route::post('/admin/tour/{id}', 'Admin\Tours\TourController@tour');
 

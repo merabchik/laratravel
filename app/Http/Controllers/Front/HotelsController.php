@@ -14,7 +14,7 @@ class HotelsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

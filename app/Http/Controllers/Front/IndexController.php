@@ -21,6 +21,12 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
+        /*DB::table('users')->insert([
+            'name' => 'SA Admin',
+            'email' => 'merabi777@gmail.com',
+            'password' => Hash::make('12345679')
+        ]);*/
+
         $view = [];
 
         $TourPositionLink = \App\Models\TourPositionLink::where(['list_position_id' => 1])->cursor();
